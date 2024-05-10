@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
 
-const Home = () => {
+const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require('../assests/img/map.png')} />
@@ -13,7 +13,9 @@ const Home = () => {
       <Text style={styles.title}>Easily Find Your Event</Text>
       <Text style={styles.description}>Find out where it is happening live and have a time of your life with friends and family</Text>
       <View style={styles.b_continue}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() =>
+          navigation.navigate('Main')
+        }>
           <Text style={styles.b_continue_text}>
             Continue
           </Text>
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    marginTop:-29,
+    marginTop: -29,
     height: 300,
     borderRadius: 40,
   },
@@ -57,14 +59,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Montserrat',
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: '600',
     textAlign: 'center',
     color: '#FFFFFF',
   },
   description: {
     fontFamily: 'Montserrat',
-    fontSize: 15,
+    fontSize: 12,
     textAlign: 'center',
     marginHorizontal: 60,
     color: '#FFFFFF',
@@ -72,17 +74,17 @@ const styles = StyleSheet.create({
   b_continue: {
     height: 77,
     width: '80%',
-    marginVertical:30,
+    marginVertical: 30,
     backgroundColor: '#A3D977',
     borderRadius: 40,
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  b_continue_text:{
+  b_continue_text: {
     color: '#000000',
     fontFamily: 'Montserrat',
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '600',
     textAlign: 'center',
   }
