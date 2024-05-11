@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-n
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require('./map.png')} />
+      <Image style={styles.image} source={require('./assests/img/map.png')} />
       <View style={styles.dot_group}>
         <View style={styles.dot}></View>
         <View style={styles.dot}></View>
