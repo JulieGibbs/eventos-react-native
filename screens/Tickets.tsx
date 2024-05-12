@@ -3,7 +3,12 @@ import { View, TextInput, Text, TouchableOpacity, Image, StyleSheet } from 'reac
 import { RadialGradient, LinearGradient } from 'react-native-gradients';
 import Menu_Tab from '../components/Menu_Tab'
 import Header from '../components/Header';
-import Event_Item from '../components/Event_Item';
+import Ticket_Detail_Cap from '../components/Ticket_Detail_Cap';
+import Start_End_Text from '../components/Start_End_Text';
+import Start_End_Link from '../components/Start_End_Link';
+import DashedLine from 'react-native-dashed-line';
+import Pay_Method from '../components/Pay_Method';
+
 const Tickets: React.FC<{ navigation: any }> = ({ navigation }) => {
 
     const [searchText, setSearchText] = useState('');
@@ -31,12 +36,25 @@ const Tickets: React.FC<{ navigation: any }> = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
             <View style={{ marginHorizontal: 30 }}>
-                <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+                <Ticket_Detail_Cap title='Festival of Lights' date='1st April, 2024' country='10:00pm Prompt' image='../assests/img/event_item_1.png' />
 
             </View>
+
+            <View style={styles.ticket_payment}>
+                <Start_End_Link title='Ticket Summary' link='Edit' />
+                <View style={styles.ticket_price}>
+                    <Start_End_Text start_text='Premium Price x1' end_text='$20.40' />
+                    <Start_End_Text start_text='Subtotal' end_text='$20.40' />
+                    <DashedLine style={styles.dashline} dashLength={15} dashThickness={1} dashGap={10} dashColor='#D9D9D9' dashStyle={{ borderRadius: 5 }} />
+                    <Start_End_Text start_text='Total' end_text='$20.40' />
+                </View>
+                <Start_End_Link title='Payment Methods' link='Change' />
+                <Pay_Method />
+            </View>
+
             <Menu_Tab navigation={navigation} />
 
-        </View>
+        </View >
     )
 }
 
@@ -75,6 +93,25 @@ const styles = StyleSheet.create({
         height: 20,
         position: 'relative',
         right: -80
+    },
+    ticket_payment: {
+        width: '90%',
+        backgroundColor: '#383838',
+        borderTopEndRadius: 30,
+        borderTopStartRadius: 30,
+        alignSelf: 'center',
+        height: '70%',
+        marginTop: '5%'
+    },
+    ticket_price: {
+        marginHorizontal: 30,
+        borderWidth: 3,
+        borderColor: '#666666',
+        borderRadius: 30
+    },
+    dashline: {
+        marginTop: 10,
+        marginHorizontal: 20
     }
 })
 

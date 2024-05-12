@@ -7,6 +7,7 @@ import Main from './screens/Main.tsx'
 import Discover from './screens/Discover.tsx';
 import SearchScreen from './screens/SearchScreen.tsx';
 import Tickets from './screens/Tickets.tsx'
+import Profile from './screens/Profile.tsx';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Stack.Screen name="Discover" component={Discover}  />
         <Stack.Screen name="Search" component={SearchScreen}  />
         <Stack.Screen name="Tickets" component={Tickets}  />
+        <Stack.Screen name="Profile" component={Profile}  />
       </Stack.Navigator>
     </NavigationContainer>
   );

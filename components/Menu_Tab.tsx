@@ -16,7 +16,7 @@ const Menu_Tab: React.FC<{ navigation: any }> = ({ navigation }) => {
             <TouchableOpacity onPress={() => navigation.navigate('Tickets')}>
                 <Image style={styles.menu_icon} source={require('../assests/img/menu_ticket_white.png')}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Main')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                 <Image style={styles.menu_icon} source={require('../assests/img/menu_profile_white.png')}></Image>
             </TouchableOpacity>
         </View>
