@@ -8,6 +8,9 @@ import Discover from './screens/Discover.tsx';
 import SearchScreen from './screens/SearchScreen.tsx';
 import Tickets from './screens/Tickets.tsx'
 import Profile from './screens/Profile.tsx';
+import Detail from './screens/Detail.tsx';
+import Login from './screens/Login.tsx';
+import Register from './screens/Register.tsx';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -23,10 +26,13 @@ const App = () => {
           component={Home}
         />
         <Stack.Screen name="Main" component={Main} />
-        <Stack.Screen name="Discover" component={Discover}  />
-        <Stack.Screen name="Search" component={SearchScreen}  />
-        <Stack.Screen name="Tickets" component={Tickets}  />
-        <Stack.Screen name="Profile" component={Profile}  />
+        <Stack.Screen name="Discover" component={Discover} />
+        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Tickets" component={Tickets} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Detail" component={Detail} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   );

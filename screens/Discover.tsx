@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import { RadialGradient } from 'react-native-gradients';
 import More from '../components/More'
 import Event_Tile from '../components/Event_Tile';
@@ -15,34 +15,36 @@ const Discover: React.FC<{ navigation: any }> = ({ navigation }) => {
                 <RadialGradient x="50%" y="30%" rx="80%" ry="70%" colorList={colorList} />
             </View>
             <Header title='Discover'></Header>
-
-            <More title='POPULAR EVENTS' />
-            <View style={styles.event_group}>
-                <Event_Tile title='Festival of Lights' day='09' month='April' country='Chinia' time='10:00' price='23.00' image='../assests/img/event_tile_1.png' />
-                <Event_Tile title='Festival of Lights' day='09' month='April' country='Chinia' time='10:00' price='23.00' image='../assests/img/event_tile_2.png' />
-            </View>
-            <View style={{ flex: 4 }}>
-                <More title='MUSIC CONCERTS' />
-                <View style={styles.event_classify}>
-                    <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
-                    <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
-
+            <ScrollView>
+                <More title='POPULAR EVENTS' />
+                <View style={styles.event_group}>
+                    <Event_Tile title='Festival of Lights' day='09' month='April' country='Chinia' time='10:00' price='23.00' image='../assests/img/event_tile_1.png' />
+                    <Event_Tile title='Festival of Lights' day='09' month='April' country='Chinia' time='10:00' price='23.00' image='../assests/img/event_tile_2.png' />
                 </View>
-                <More title='SEMINARS' />
-                <View style={styles.event_classify}>
-                    <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
-                    <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+                <View style={{ flex: 4 }}>
+                    <More title='MUSIC CONCERTS' />
+                    <View style={styles.event_classify}>
+                        <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+                        <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
 
+                    </View>
+                    <More title='SEMINARS' />
+                    <View style={styles.event_classify}>
+                        <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+                        <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+
+                    </View>
+                    <More title='MOVIE PREMIERES' />
+                    <View style={styles.event_classify}>
+                        <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+                        <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+
+                    </View>
                 </View>
-                <More title='MOVIE PREMIERES' />
-                <View style={styles.event_classify}>
-                    <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
-                    <Event_Classify_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+            </ScrollView>
 
-                </View>
-            </View>
 
-            <Menu_Tab navigation={navigation} page='discover'/>
+            <Menu_Tab navigation={navigation} page='discover' />
 
         </View>
     )

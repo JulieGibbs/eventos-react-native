@@ -16,7 +16,7 @@ const Pay_Method= () => {
                         value={item}
                         status={checked === item ? 'checked' : 'unchecked'}
                         onPress={() => setChecked(item)}
-                        color='#A3D977'
+                        color='#e2fc49'
                     />
                     <Text style={styles.upcoming_text}>{item}</Text>
                 </View>

@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
         color: '#CCCCCC'
     },
     tag_active: {
-        backgroundColor: '#A3D977',
+        backgroundColor: '#e2fc49',
     },
     tag_active_text: {
         fontFamily: 'Montserrat',

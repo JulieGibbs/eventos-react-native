@@ -14,7 +14,7 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
       <Text style={styles.description}>Find out where it is happening live and have a time of your life with friends and family</Text>
       <View style={styles.b_continue}>
         <TouchableOpacity onPress={() =>
-          navigation.navigate('Main')
+          navigation.navigate('Login')
         }>
           <Text style={styles.b_continue_text}>
             Continue
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   dot_active: {
     width: 42,
-    backgroundColor: '#A3D977',
+    backgroundColor: '#e2fc49',
     borderRadius: 15,
   },
   title: {
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     height: 77,
     width: '80%',
     marginVertical: 30,
-    backgroundColor: '#A3D977',
+    backgroundColor: '#e2fc49',
     borderRadius: 40,
     borderWidth: 1,
     justifyContent: 'center',

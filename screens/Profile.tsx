@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     profile_name: {
         fontFamily: 'Montserrat',
         fontSize: 16,
-        color: '#A3D977'
+        color: '#e2fc49'
     },
     profile_mail: {
         fontFamily: 'Montserrat',

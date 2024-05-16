@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     upcoming_text: {
         fontFamily: 'Montserrat',
         fontSize: 12,
-        color: '#A3D977',
+        color: '#e2fc49',
     },
     upcoming_right: {
         flexDirection: 'row'

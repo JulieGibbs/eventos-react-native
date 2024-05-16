@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
     month_text: {
         fontFamily: 'Montserrat',
         fontSize: 9,
-        color: '#A3D977',
+        color: '#e2fc49',
         marginHorizontal: 10,
         justifyContent: 'center'
     },
     day_text: {
         fontFamily: 'Montserrat',
         fontSize: 20,
-        color: '#A3D977'
+        color: '#e2fc49'
     },
     event_content: {
         backgroundColor: "#7C7C7C",
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     price_text: {
-        color: '#A3D977',
+        color: '#e2fc49',
         fontFamily: 'Montserrat',
         fontSize: 12,
     }

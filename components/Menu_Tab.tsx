@@ -1,10 +1,8 @@
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { menu_main_dark, menu_main_white, menu_discover_dark, menu_discover_white, menu_search_dark, menu_search_white, menu_ticket_dark, menu_ticket_white, menu_profile_dark, menu_profile_white } from './constants';
 const Menu_Tab: React.FC<{ navigation: any, page: string }> = ({ navigation, page }) => {
-    console.log('page---------', page)
 
     const main_image_url = (page: string):string=> {
-        console.log(page)
 
         return page==='main'?menu_main_dark:menu_main_white
 

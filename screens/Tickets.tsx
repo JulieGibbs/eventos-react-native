@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     },
     ticket_payment: {
         width: '90%',
-        backgroundColor: '#383838',
+        backgroundColor: '#000000',
         borderTopEndRadius: 30,
         borderTopStartRadius: 30,
         alignSelf: 'center',
