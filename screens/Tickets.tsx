@@ -52,15 +52,15 @@ const Tickets: React.FC<{ navigation: any }> = ({ navigation }) => {
                 <Pay_Method />
             </View>
 
-            <Menu_Tab navigation={navigation} />
+            <Menu_Tab navigation={navigation} page='tickets' />
 
         </View >
     )
 }
 
 const colorList = [
-    { offset: '0%', color: '#4774B8', opacity: '1' },
-    { offset: '100%', color: '#0A1322', opacity: '1' }
+    { offset: '0%', color: '#fa2002', opacity: '1' },
+    { offset: '100%', color: '#fa6752', opacity: '1' }
 ]
 
 const styles = StyleSheet.create({
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         top: 52,
         width: '100%',
         height: '100%',
-        backgroundColor: '#4774B8',
+        backgroundColor: '#fa2002',
         borderRadius: 100,
         borderTopLeftRadius: 20,
     },

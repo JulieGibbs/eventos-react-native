@@ -41,15 +41,15 @@ const SearchScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                     </TouchableOpacity>
                 )}
             </View>
-            <Menu_Tab navigation={navigation} />
+            <Menu_Tab navigation={navigation} page='searchscreen'/>
 
         </View>
     )
 }
 
 const colorList = [
-    { offset: '0%', color: '#4774B8', opacity: '1' },
-    { offset: '100%', color: '#0A1322', opacity: '1' }
+    { offset: '0%', color: '#fa2002', opacity: '1' },
+    { offset: '100%', color: '#fa6752', opacity: '1' }
 ]
 
 const styles = StyleSheet.create({
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         top: -122,
         width: '100%',
         height: '60%',
-        backgroundColor: '#4774B8',
+        backgroundColor: '#fa2002',
         borderRadius: 100
     },
     searchbar: {

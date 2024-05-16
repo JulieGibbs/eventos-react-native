@@ -14,7 +14,7 @@ const Event_Tile: React.FC<MoreProps> = ({ title, day, month, country, time, pri
     return (
         <View style={styles.container}>
             <ImageBackground
-                source={require('../assests/img/event_tile_1.png')} style={styles.imageBackground}>
+                source={require('../assests/img/event_tile_1.png')} imageStyle={{ borderRadius: 20}} style={styles.imageBackground}>
                 <View style={styles.event_month}>
                     <Text style={styles.day_text}>{day}</Text>
                     <Text style={styles.month_text}>{month}</Text>

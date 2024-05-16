@@ -4,18 +4,26 @@ import { TabView, SceneMap } from 'react-native-tab-view';
 import { RadialGradient } from 'react-native-gradients';
 import Menu_Tab from '../components/Menu_Tab'
 import Header from '../components/Header';
-
+import Event_Item from '../components/Event_Item';
 const FirstRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#ff4081' }} />
+    <View style={styles.history}>
+        <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+        <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+        <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
+    </View>
 );
 
 const SecondRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
+    <View style={{ flex: 1 }} />
 );
 
+const ThirdRoute = () => (
+    <View style={{ flex: 1 }} />
+);
 const renderScene = SceneMap({
     first: FirstRoute,
     second: SecondRoute,
+    third: ThirdRoute
 });
 
 
@@ -24,8 +32,9 @@ const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
 
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
-        { key: 'first', title: 'First' },
-        { key: 'second', title: 'Second' },
+        { key: 'first', title: 'Events' },
+        { key: 'second', title: 'Collections' },
+        { key: 'third', title: 'About' },
     ]);
     return (
         <View style={styles.container}>
@@ -60,15 +69,15 @@ const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
                 onIndexChange={setIndex}
                 initialLayout={{ width: layout.width }}
             />
-            <Menu_Tab navigation={navigation} />
+            <Menu_Tab navigation={navigation} page='profile' />
 
         </View>
     )
 }
 
 const colorList = [
-    { offset: '0%', color: '#4774B8', opacity: '1' },
-    { offset: '100%', color: '#0A1322', opacity: '1' }
+    { offset: '0%', color: '#fa2002', opacity: '1' },
+    { offset: '100%', color: '#fa6752', opacity: '1' }
 ]
 
 const styles = StyleSheet.create({
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
         top: -92,
         width: '100%',
         height: '60%',
-        backgroundColor: '#4774B8',
+        backgroundColor: '#fa2002',
         borderRadius: 100
     },
     profile_info: {
@@ -122,7 +131,10 @@ const styles = StyleSheet.create({
         color: '#ffffff'
     },
     history: {
-
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent:'space-around',
+        marginHorizontal: 30
     }
 })
 
