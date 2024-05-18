@@ -1,19 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { API_URL } from '../config';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 const Login: React.FC<{ navigation: any }> = ({ navigation }) => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleLogin = async () => {
+        try{
+            const getEventsAll = await fetch('http://127.0.0.1:8080/api/auth/signin', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "username": username,
+                    "password": password
+                }),
+            });
+            console.log('resquest-------')
+            const response=await getEventsAll.json();
+            console.log('response status-------', response.status)
+        }
+        catch(err){
+            console.error(err)
+        }
+        
+
+    }
     return (
         <View style={styles.container}>
             <View style={styles.loginCard}>
                 <Text style={styles.login_text}>Login</Text>
-                <TextInput style={styles.name_input} placeholder='Name' />
-                <TextInput style={styles.pwd_input} placeholder='Password' secureTextEntry={true}/>
-                <View style={styles.login_button}>
+                <TextInput style={styles.name_input} placeholder='Name' value={username} onChangeText={setUsername} />
+                <TextInput style={styles.pwd_input} placeholder='Password' secureTextEntry={true} value={password} onChangeText={setPassword} />
+                <TouchableOpacity style={styles.login_button} onPress={handleLogin}>
                     <Text>Login</Text>
-                </View>
+                </TouchableOpacity>
                 <Text>Don't you have an account?</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                    <Text style={{textDecorationLine:'underline', color:'#ffffff'}}>Create</Text>
+                    <Text style={{ textDecorationLine: 'underline', color: '#ffffff' }}>Create</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -44,25 +72,25 @@ const styles = StyleSheet.create({
     name_input: {
         color: '#000000',
         width: '80%',
-        backgroundColor:'#ffffff',
-        borderRadius:30
+        backgroundColor: '#ffffff',
+        borderRadius: 30
     },
     pwd_input: {
         color: '#000000',
         width: '80%',
-        backgroundColor:'#ffffff',
-        borderRadius:30
+        backgroundColor: '#ffffff',
+        borderRadius: 30
 
     },
     login_button: {
         backgroundColor: '#e2fc49',
         color: '#ffffff',
-        padding:10,
-        borderRadius:20,
-        width:'60%',
-        textAlign:'center',
-        justifyContent:'center',
-        alignItems:'center'
+        padding: 10,
+        borderRadius: 20,
+        width: '60%',
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 

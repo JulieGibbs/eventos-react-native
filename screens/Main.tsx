@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { RadialGradient } from 'react-native-gradients';
 import More from '../components/More'
 import Event_Tile from '../components/Event_Tile';
 import Event_Item from '../components/Event_Item';
 import Menu_Tab from '../components/Menu_Tab'
-
+import { API_URL } from '../config';
 const Main: React.FC<{ navigation: any }> = ({ navigation }) => {
+
+    const [events, setEvents] = useState([])
+    const getEvents = async () => {
+        try {
+            const response = await fetch(`${API_URL}/api/event/all`);
+            const json = await response.json();
+            setEvents(json);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    useEffect(() => {
+        getEvents();
+    }, [])
+    console.log('events------', events)
+
     return (
         <View style={styles.container}>
 
@@ -32,15 +48,6 @@ const Main: React.FC<{ navigation: any }> = ({ navigation }) => {
                 <View style={[styles.tag, styles.tag_active]}>
                     <Text style={styles.tag_active_text}>My Feed</Text>
                 </View>
-                <View style={styles.tag}>
-                    <Text style={styles.tag_text}>Seminars</Text>
-                </View>
-                <View style={styles.tag}>
-                    <Text style={styles.tag_text}>Concerts</Text>
-                </View>
-                <View style={styles.tag}>
-                    <Text style={styles.tag_text}>Meeting</Text>
-                </View>
             </View>
             <More title='Upcoming Events' />
             <View style={styles.event_group}>
@@ -53,7 +60,7 @@ const Main: React.FC<{ navigation: any }> = ({ navigation }) => {
                 <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_2.png' />
             </View>
 
-            <Menu_Tab navigation={navigation} page='main'/>
+            <Menu_Tab navigation={navigation} page='main' />
 
         </View>
     )
@@ -152,7 +159,7 @@ const styles = StyleSheet.create({
     event_all: {
         flex: 2,
         flexDirection: 'column',
-        justifyContent:'space-around',
+        justifyContent: 'space-around',
         marginHorizontal: 30
     }
 })
