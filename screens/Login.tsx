@@ -9,7 +9,7 @@ const Login: React.FC<{ navigation: any }> = ({ navigation }) => {
 
     const handleLogin = async () => {
         try{
-            const getEventsAll = await fetch('http://127.0.0.1:8080/api/auth/signin', {
+            const login = await fetch(`${API_URL}/api/auth/signin`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -20,9 +20,7 @@ const Login: React.FC<{ navigation: any }> = ({ navigation }) => {
                     "password": password
                 }),
             });
-            console.log('resquest-------')
-            const response=await getEventsAll.json();
-            console.log('response status-------', response.status)
+            navigation.navigate('Main')
         }
         catch(err){
             console.error(err)

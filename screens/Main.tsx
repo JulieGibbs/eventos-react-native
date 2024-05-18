@@ -14,6 +14,7 @@ const Main: React.FC<{ navigation: any }> = ({ navigation }) => {
             const response = await fetch(`${API_URL}/api/event/all`);
             const json = await response.json();
             setEvents(json);
+            console.log('events', json)
         } catch (error) {
             console.error(error);
         }
@@ -51,8 +52,13 @@ const Main: React.FC<{ navigation: any }> = ({ navigation }) => {
             </View>
             <More title='Upcoming Events' />
             <View style={styles.event_group}>
-                <Event_Tile title='Festival of Lights' day='09' month='April' country='Chinia' time='10:00' price='23.00' image='../assests/img/event_tile_1.png' />
-                <Event_Tile title='Festival of Lights' day='09' month='April' country='Chinia' time='10:00' price='23.00' image='../assests/img/event_tile_2.png' />
+                {events.map((item, index) => {
+
+                    return (
+                        <Event_Tile key={index} title={item["title"]} day='09' month='April' country='Chinia' time='10:00' price='23.00' image='../assests/img/event_tile_1.png' />
+                    )
+                })}
+
             </View>
             <More title='Upcoming Events' />
             <View style={styles.event_all}>
@@ -82,8 +88,7 @@ const styles = StyleSheet.create({
         top: -122,
         width: '100%',
         height: '60%',
-        backgroundColor: '#fa2002',
-        borderRadius: 100
+        borderRadius: 20
     },
     header: {
         flex: 1,
@@ -152,12 +157,12 @@ const styles = StyleSheet.create({
         color: '#000000'
     },
     event_group: {
-        flex: 2,
+        flex: 3,
         flexDirection: 'row',
         marginHorizontal: 30,
     },
     event_all: {
-        flex: 2,
+        flex:4,
         flexDirection: 'column',
         justifyContent: 'space-around',
         marginHorizontal: 30
