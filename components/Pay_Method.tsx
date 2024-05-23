@@ -10,7 +10,7 @@ const Pay_Method= () => {
     return (
         <View>
             {pay_methodds.map((item, index)=>(
-            <View style={styles.upcoming}>
+            <View style={styles.upcoming} key={index}>
                 <View style={styles.upcoming_left}>
                     <RadioButton
                         value={item}

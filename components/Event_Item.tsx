@@ -2,7 +2,7 @@ import { Image, View, Text, StyleSheet, ImageBackground } from 'react-native';
 
 interface MoreProps {
     title: string,
-    day: string,
+    day: Number,
     month: string,
     address: string,
     price: string,
@@ -16,7 +16,7 @@ const Event_Item: React.FC<MoreProps> = ({ title, day, month, address, price, im
                 <ImageBackground
                     source={require('../assests/img/event_tile_1.png')} imageStyle={{borderRadius:20}} style={styles.imageBackground}>
                     <View style={styles.event_month}>
-                        <Text style={styles.day_text}>{day}</Text>
+                        <Text style={styles.day_text}>{day.toString()}</Text>
                         <Text style={styles.month_text}>{month}</Text>
                     </View>
                 </ImageBackground>
@@ -24,7 +24,11 @@ const Event_Item: React.FC<MoreProps> = ({ title, day, month, address, price, im
             <View style={styles.event_right}>
                 <Text style={styles.event_title}>{title}</Text>
                 <View style={styles.event_content_footer}>
+                    <View style={{flexDirection:'row'}}>
+                    <Image style={styles.place_image} source={require('../assests/img/place.png')}></Image>
                     <Text style={styles.event_country}>{address}</Text>
+                    </View>
+                    
                     <View style={styles.event_price}>
                         <Text style={styles.price_text}>${price}</Text>
                     </View>
@@ -44,13 +48,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding:10,
+        marginVertical:10
     },
     event_left: {
+        flex:1
 
     },
     imageBackground: {
         width: 70,
         height: 70
+    },
+    place_image:{
+        width:20,
+        height:20
     },
     event_content: {
         flexDirection: 'column',
@@ -86,15 +96,18 @@ const styles = StyleSheet.create({
         color: '#e2fc49'
     },
     event_right:{
+        flex:4,
         flexDirection:'column',
         marginLeft:10
     },
     event_title: {
         fontFamily: 'Montserrat',
         fontSize: 14,
-        color: '#ffffff'
+        color: '#ffffff',
+        flex:1
     },
     event_content_footer: {
+        flex:1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'

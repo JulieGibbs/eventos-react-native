@@ -1,41 +1,65 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet, useWindowDimensions } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet, useWindowDimensions, FlatList } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { RadialGradient } from 'react-native-gradients';
 import Menu_Tab from '../components/Menu_Tab'
 import Header from '../components/Header';
 import Event_Item from '../components/Event_Item';
-const FirstRoute = () => (
-    <View style={styles.history}>
-        <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
-        <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
-        <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
-    </View>
-);
+import { API_URL } from '../config';
 
-const SecondRoute = () => (
-    <View style={{ flex: 1 }} />
-);
 
-const ThirdRoute = () => (
-    <View style={{ flex: 1 }} />
-);
-const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-    third: ThirdRoute
-});
 
 
 const Profile: React.FC<{ navigation: any }> = ({ navigation }) => {
     const layout = useWindowDimensions();
+    const [myevents, setMyevents] = useState([])
+    const getmyevents = async () => {
+        try {
+            const response = await fetch(`${API_URL}/api/event/myall`);
+            const json = await response.json()
+            setMyevents(json)
+        }
+        catch (err) {
+            console.error(err)
+        }
 
+    }
+    useEffect(() => {
+        getmyevents()
+    }, [])
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
         { key: 'first', title: 'Events' },
         { key: 'second', title: 'Collections' },
         { key: 'third', title: 'About' },
     ]);
+    const FirstRoute = () => (
+        <View style={styles.history}>
+            <FlatList
+                data={myevents}
+                renderItem={({ item }) => <Event_Item title={item["title"]} day={(new Date(item['date'])).getDate()} month={monthNames[(new Date(item['date'])).getMonth()]} address={item["address"]} price={item['price']} image='../assests/img/event_item_1.png' />
+                }
+                keyExtractor={item => item['_id']}
+            ></FlatList>
+        </View>
+    );
+    const SecondRoute = () => (
+        <View style={{ flex: 1 }} />
+    );
+
+    const ThirdRoute = () => (
+        <View style={{ flex: 1 }} />
+    );
+    const renderScene = SceneMap({
+        first: FirstRoute,
+        second: SecondRoute,
+        third: ThirdRoute
+    });
+
     return (
         <View style={styles.container}>
 
@@ -133,7 +157,7 @@ const styles = StyleSheet.create({
     history: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent:'space-around',
+        justifyContent: 'space-around',
         marginHorizontal: 30
     }
 })

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, FlatList } from 'react-native';
 import { RadialGradient } from 'react-native-gradients';
 import More from '../components/More'
 import Event_Tile from '../components/Event_Tile';
@@ -22,8 +22,10 @@ const Main: React.FC<{ navigation: any }> = ({ navigation }) => {
     useEffect(() => {
         getEvents();
     }, [])
-    console.log('events------', events)
-
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
     return (
         <View style={styles.container}>
 
@@ -52,18 +54,26 @@ const Main: React.FC<{ navigation: any }> = ({ navigation }) => {
             </View>
             <More title='Upcoming Events' />
             <View style={styles.event_group}>
-                {events.map((item, index) => {
-
-                    return (
-                        <Event_Tile key={index} title={item["title"]} day='09' month='April' country='Chinia' time='10:00' price='23.00' image='../assests/img/event_tile_1.png' />
-                    )
-                })}
-
+                <FlatList
+                    data={events}
+                    renderItem={({ item }) => <Event_Tile title={item['title']} day={(new Date(item['date'])).getDate()} month={monthNames[(new Date(item['date'])).getMonth()]} country={item["address"]} time={`${(new Date(item['date'])).getHours()}:${(new Date(item['date'])).getMinutes()}`} price={item['price']} image='../assests/img/event_tile_1.png' />
+                    }
+                    keyExtractor={item => item['_id']}
+                    horizontal={true}
+                />
             </View>
             <More title='Upcoming Events' />
             <View style={styles.event_all}>
-                <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_1.png' />
-                <Event_Item title='Self Awareness Bootcamp For' day='09' month='April' address='Nigeria, NG' price='23.00' image='../assests/img/event_item_2.png' />
+                <FlatList
+                    data={events}
+                    renderItem={({ item }) => <Event_Item title={item["title"]} day={(new Date(item['date'])).getDate()} month={monthNames[(new Date(item['date'])).getMonth()]} address={item["address"]} price={item['price']} image='../assests/img/event_item_1.png' />
+                    }
+                    keyExtractor={item => item['_id']}
+                >
+
+                </FlatList>
+
+
             </View>
 
             <Menu_Tab navigation={navigation} page='main' />
@@ -157,15 +167,14 @@ const styles = StyleSheet.create({
         color: '#000000'
     },
     event_group: {
-        flex: 3,
-        flexDirection: 'row',
         marginHorizontal: 30,
     },
     event_all: {
-        flex:4,
+        flex: 4,
         flexDirection: 'column',
         justifyContent: 'space-around',
-        marginHorizontal: 30
+        marginHorizontal: 30,
+        marginBottom:40
     }
 })
 

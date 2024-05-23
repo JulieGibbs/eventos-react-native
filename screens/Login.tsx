@@ -2,13 +2,29 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import { API_URL } from '../config';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login: React.FC<{ navigation: any }> = ({ navigation }) => {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const storeToken = async (token: any) => {
+        try {
+            await AsyncStorage.setItem('userToken', token);
+            console.log('Token stored successfully');
+        } catch (error) {
+            console.log('Error storing token:', error);
+        }
+    };
+    const storeUserId = async (userId: any) => {
+        try {
+            await AsyncStorage.setItem('userId', userId);
+            console.log('userId stored successfully');
+        } catch (error) {
+            console.log('Error storing token:', error);
+        }
+    };
     const handleLogin = async () => {
-        try{
+        try {
             const login = await fetch(`${API_URL}/api/auth/signin`, {
                 method: 'POST',
                 headers: {
@@ -16,23 +32,27 @@ const Login: React.FC<{ navigation: any }> = ({ navigation }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    "username": username,
-                    "password": password
+                    email: email,
+                    password: password
                 }),
-            });
+            })
+            const response = await login.json()
+            storeToken(response.token)
+            storeUserId(response.id)
             navigation.navigate('Main')
+
         }
-        catch(err){
+        catch (err) {
             console.error(err)
         }
-        
+
 
     }
     return (
         <View style={styles.container}>
             <View style={styles.loginCard}>
                 <Text style={styles.login_text}>Login</Text>
-                <TextInput style={styles.name_input} placeholder='Name' value={username} onChangeText={setUsername} />
+                <TextInput style={styles.name_input} placeholder='Email' value={email} onChangeText={setEmail} />
                 <TextInput style={styles.pwd_input} placeholder='Password' secureTextEntry={true} value={password} onChangeText={setPassword} />
                 <TouchableOpacity style={styles.login_button} onPress={handleLogin}>
                     <Text>Login</Text>

@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { menu_main_dark, menu_main_white, menu_discover_dark, menu_discover_white, menu_search_dark, menu_search_white, menu_ticket_dark, menu_ticket_white, menu_profile_dark, menu_profile_white } from './constants';
+import { menu_main_dark, menu_main_white, menu_New_Event_dark, menu_New_Event_white, menu_search_dark, menu_search_white, menu_ticket_dark, menu_ticket_white, menu_profile_dark, menu_profile_white } from './constants';
 const Menu_Tab: React.FC<{ navigation: any, page: string }> = ({ navigation, page }) => {
 
     const main_image_url = (page: string):string=> {
@@ -7,9 +7,9 @@ const Menu_Tab: React.FC<{ navigation: any, page: string }> = ({ navigation, pag
         return page==='main'?menu_main_dark:menu_main_white
 
     };
-    const discover_image_url = (page: string):string=> {
+    const New_Event_image_url = (page: string):string=> {
 
-        return page==='discover'?menu_discover_dark:menu_discover_white
+        return page==='New_Event'?menu_New_Event_dark:menu_New_Event_white
 
     }
     const search_image_url = (page: string):string=> {
@@ -33,8 +33,8 @@ const Menu_Tab: React.FC<{ navigation: any, page: string }> = ({ navigation, pag
             <TouchableOpacity onPress={() => navigation.navigate('Main')}>
                 <Image style={styles.menu_icon} source={{uri:main_image_url(page)}}></Image>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Discover')}>
-                <Image style={styles.menu_icon} source={{uri:discover_image_url(page)}}></Image>
+            <TouchableOpacity onPress={() => navigation.navigate('New_Event')}>
+                <Image style={styles.menu_icon} source={{uri:New_Event_image_url(page)}}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Search')}>
                 <Image style={styles.menu_icon} source={{uri:search_image_url(page)}}></Image>

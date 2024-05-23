@@ -2,10 +2,10 @@ import { Image, View, Text, StyleSheet, ImageBackground } from 'react-native';
 
 interface MoreProps {
     title: string,
-    day: string,
-    month: string,
+    day: Number,
+    month: String,
     country: string,
-    time: string,
+    time: String,
     price: string,
     image: string
 }
@@ -16,13 +16,13 @@ const Event_Tile: React.FC<MoreProps> = ({ title, day, month, country, time, pri
             <ImageBackground
                 source={require('../assests/img/event_tile_1.png')} imageStyle={{ borderRadius: 20 }} style={styles.imageBackground}>
                 <View style={styles.event_month}>
-                    <Text style={styles.day_text}>{day}</Text>
-                    <Text style={styles.month_text}>{month}</Text>
+                    <Text style={styles.day_text}>{day.toString()}</Text>
+                    <Text style={styles.month_text}>{month.toString()}</Text>
                 </View>
                 <View style={styles.event_content}>
-                    <View style={{flex:2}}>
+                    <View style={{flex:3}}>
                         <Text style={styles.event_title}>{title}</Text>
-                        <Text style={styles.event_country}>{country} {time}</Text>
+                        <Text style={styles.event_country}>{country} {time.toString()}</Text>
                     </View>
 
                     <View style={styles.event_content_footer}>
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         position: 'relative',
         borderRadius: 30,
         marginRight: 20,
-        width:'70%'
+        width:280,
+        height:222,
     },
     imageBackground: {
         width: '100%',
