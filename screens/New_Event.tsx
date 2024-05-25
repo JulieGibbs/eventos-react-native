@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, View, Text, Image, ScrollView, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity, Button, Alert } from 'react-native';
+import { TextInput } from "@react-native-material/core";
 import { RadialGradient } from 'react-native-gradients';
 import More from '../components/More'
 import Event_Tile from '../components/Event_Tile';
@@ -26,6 +27,7 @@ const New_Event: React.FC<{ navigation: any }> = ({ navigation }) => {
     const ref_input2 = useRef();
 
     const validateInputs = () => {
+
         setIsValid({
             title: title.trim().length > 0,
             address: address.trim().length > 0,
@@ -35,6 +37,7 @@ const New_Event: React.FC<{ navigation: any }> = ({ navigation }) => {
     };
 
     const handleSubmit = () => {
+        validateInputs()
         if (isValid.title && isValid.address && isValid.description && isValid.price) {
             console.log('All inputs are valid'); // Proceed with form submission or any other action
             handleCreateEvent()
@@ -87,12 +90,17 @@ const New_Event: React.FC<{ navigation: any }> = ({ navigation }) => {
             <View style={styles.body}>
                 <TextInput
                     autoFocus={true}
-                    style={styles.text_input} placeholder='title' value={title} onChangeText={setTitle}
+                    style={styles.text_input} value={title} onChangeText={setTitle}
+                    variant='outlined'
+                    label='Title'
                 />
-                <TextInput style={styles.text_input} placeholder='address' value={address} onChangeText={setAddress} />
-                <TextInput style={styles.text_input} placeholder='description' value={description} onChangeText={setDescription} />
+                <TextInput style={styles.text_input} value={address} onChangeText={setAddress} variant='outlined'
+                    label='Address' />
+                <TextInput style={styles.text_input} value={description} onChangeText={setDescription} variant='outlined'
+                    label='description' />
                 <TextInput style={styles.text_input} keyboardType='numeric'
-                    placeholder='price' value={price} onChangeText={handlePriceChange} />
+                    value={price} onChangeText={handlePriceChange} variant='outlined'
+                    label='price' />
                 <TouchableOpacity onPress={() => setOpen(true)} style={styles.date_button}>
 
                     <Image style={{ width: 20, height: 20, marginRight: 10 }} source={require('../assests/img/calendar-icon.png')}></Image>
@@ -163,7 +171,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'rgba(128, 128, 128, 0.5)',
+        backgroundColor: 'rgba(256, 256, 256, 0.5)',
         borderRadius: 40,
         width: '90%',
         alignSelf: 'center'
@@ -174,10 +182,7 @@ const styles = StyleSheet.create({
         color: '#CCCCCC',
     },
     text_input: {
-        color: '#000000',
         width: '80%',
-        backgroundColor: '#ffffff',
-        borderRadius: 30
     },
     button_hover: {
 
