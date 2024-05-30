@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.9.26",
     "react": "18.2.0",
     "react-native": "0.74.1",
+    "react-native-async-storage": "^0.0.1",
     "react-native-dashed-line": "^1.1.0",
     "react-native-date-picker": "^5.0.2",
     "react-native-gradients": "^2.1.1",

@@ -1,49 +1,49 @@
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { menu_main_dark, menu_main_white, menu_New_Event_dark, menu_New_Event_white, menu_search_dark, menu_search_white, menu_ticket_dark, menu_ticket_white, menu_profile_dark, menu_profile_white } from './constants';
+import { menu_main_dark, menu_main_white, menu_new_event_dark, menu_new_event_white, menu_search_dark, menu_search_white, menu_ticket_dark, menu_ticket_white, menu_profile_dark, menu_profile_white } from './constants';
 const Menu_Tab: React.FC<{ navigation: any, page: string }> = ({ navigation, page }) => {
 
-    const main_image_url = (page: string):string=> {
+    const main_image_url = (page: string): string => {
 
-        return page==='main'?menu_main_dark:menu_main_white
+        return page === 'main' ? require('../assests/img/menu_main_dark.png') : require('../assests/img/menu_main_white.png');
 
     };
-    const New_Event_image_url = (page: string):string=> {
+    const new_event_image_url = (page: string): string => {
 
-        return page==='New_Event'?menu_New_Event_dark:menu_New_Event_white
-
-    }
-    const search_image_url = (page: string):string=> {
-
-        return page==='searchscreen'?menu_search_dark:menu_search_white
+        return page === 'new_event' ? require('../assests/img/menu_discover_dark.png') : require('../assests/img/menu_discover_white.png');
 
     }
-    const ticket_image_url = (page: string):string=> {
+    const search_image_url = (page: string): string => {
 
-        return page==='tickets'?menu_ticket_dark:menu_ticket_white
+        return page === 'searchscreen' ? require('../assests/img/menu_search_dark.png') : require('../assests/img/menu_search_white.png');
 
     }
-    const profile_image_url = (page: string):string=> {
+    const ticket_image_url = (page: string): string => {
 
-        return page==='profile'?menu_profile_dark:menu_profile_white
+        return page === 'tickets' ? require('../assests/img/menu_ticket_dark.png') : require('../assests/img/menu_ticket_white.png');
+
+    }
+    const profile_image_url = (page: string): string => {
+
+        return page === 'profile' ? require('../assests/img/menu_profile_dark.png') : require('../assests/img/menu_profile_white.png');
 
     }
 
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('Main')}>
-                <Image style={styles.menu_icon} source={{uri:main_image_url(page)}}></Image>
+                <Image style={styles.menu_icon} source={main_image_url(page)}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('New_Event')}>
-                <Image style={styles.menu_icon} source={{uri:New_Event_image_url(page)}}></Image>
+                <Image style={styles.menu_icon}  source={new_event_image_url(page)}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Search')}>
-                <Image style={styles.menu_icon} source={{uri:search_image_url(page)}}></Image>
+                <Image style={styles.menu_icon}  source={search_image_url(page)}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Tickets')}>
-                <Image style={styles.menu_icon} source={{uri:ticket_image_url(page)}}></Image>
+                <Image style={styles.menu_icon}  source={ticket_image_url(page)}></Image>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                <Image style={styles.menu_icon} source={{uri:profile_image_url(page)}}></Image>
+                <Image style={styles.menu_icon}  source={profile_image_url(page)}></Image>
             </TouchableOpacity>
         </View>
     )
